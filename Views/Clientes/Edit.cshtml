@@ -1,0 +1,90 @@
+﻿@model PizzaEverisDay.Models.ProdutosParaPedido
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Cliente: @Model.cliente.CPF</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="cliente.CPF" />
+            <div class="form-group">
+                <label asp-for="cliente.Nome" class="control-label"></label>
+                <input asp-for="cliente.Nome" class="form-control" />
+                <span asp-validation-for="cliente.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cliente.Data_Nascimento" class="control-label"></label>
+                <input asp-for="cliente.Data_Nascimento" class="form-control" />
+                <span asp-validation-for="cliente.Data_Nascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cliente.Telefone" class="control-label"></label>
+                <input asp-for="cliente.Telefone" class="form-control" />
+                <span asp-validation-for="cliente.Telefone" class="text-danger"></span>
+            </div>
+            <select name="IdCidade">
+                @foreach (var item in Model.ListaCidade)
+                {
+                    if (item.IdCidade == Model.endereco.IdCidade)
+                    {
+                        <option selected value="@item.IdCidade">
+                            @item.Nome
+                        </option>
+                    }
+
+                    else
+                    {
+                        <option value="@item.IdCidade">
+                            @item.Nome
+                        </option>
+                    }
+
+
+                }
+            </select>
+            <div class="form-group">
+                <label asp-for="endereco.Logradouro" class="control-label"></label>
+                <input asp-for="endereco.Logradouro" class="form-control" />
+                <span asp-validation-for="endereco.Logradouro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endereco.Numero" class="control-label"></label>
+                <input asp-for="endereco.Numero" class="form-control" />
+                <span asp-validation-for="endereco.Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endereco.Complemento" class="control-label"></label>
+                <input asp-for="endereco.Complemento" class="form-control" />
+                <span asp-validation-for="endereco.Complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endereco.Bairro" class="control-label"></label>
+                <input asp-for="endereco.Bairro" class="form-control" />
+                <span asp-validation-for="endereco.Bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endereco.CEP" class="control-label"></label>
+                <input asp-for="endereco.CEP" class="form-control" />
+                <span asp-validation-for="endereco.CEP" class="text-danger"></span>
+            </div>
+
+
+            <input type="hidden" asp-for="cliente.CPF" />
+            <input type="hidden" asp-for="endereco.IdEndereco" />
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,84 @@
+﻿@model PizzaEverisDay.Models.ProdutosParaPedido
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link href="~/css/global.css" rel="stylesheet">
+
+<h1>Novo</h1>
+
+<h4 class="text-dark">Pedido</h4>
+<hr />
+<div class="row text-dark">
+    <div class="col-md-12">
+        <form asp-action="Cadastrar">
+            <select name="CPF">
+                @foreach (var item in Model.ListaCliente)
+                {
+                    <option value="@item.CPF">
+                        @item.Nome
+                    </option>
+                }
+            </select>
+            <select name="FormaPagamento">
+
+                <option value="Dinheiro">
+                    Dinheiro
+                </option>
+                <option value="Cartão de Crédito">
+                    Cartão de Crédito
+                </option>
+                <option value="Cartão de Débito">
+                    Cartão de Débito
+                </option>
+            </select>
+            <select name="StatusDoPedido">
+
+                <option value="Em andamento">
+                    Em Andamento
+                </option>
+                <option value="A caminho">
+                    A caminho
+                </option>
+                <option value="Entregue">
+                    Entregue
+                </option>
+                <option value="Concluido">
+                    Concluido
+                </option>
+                <option value="Cancelado">
+                    Cancelado
+                </option>
+            </select>
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Preco</th>
+                    <th>Tamanho</th>
+                    <th>Descricao</th>
+                    <th>Quantidade</th>
+                </tr>
+                @foreach (var item in Model.ListaProduto)
+                {
+                    <tr>
+                        <td>@item.Id_Produto</td>
+                        <td>@item.Nome</td>
+                        <td>@item.Preco</td>
+                        <td>@item.Tamanho</td>
+                        <td>@item.Descricao</td>
+                        <td><input type="number" name="Produto[@item.Id_Produto]" value="0" min="0" /></td>
+                    </tr>
+                }
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Pedir" class="btn btn-info" />
+                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

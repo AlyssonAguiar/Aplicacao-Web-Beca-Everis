@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PizzaEverisDay.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/css/global.css" rel="stylesheet">
+
+<h1>Pedidos</h1>
+<div class="form-group">
+    <a class="btn btn-info" asp-action="Create">Novo Pedido</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_Pedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco_Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forma_De_Pagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status_Pedido)
+            </th>
+            <th>
+                Ações
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Reverse())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Pedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco_Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Forma_De_Pagamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status_Pedido)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdPedido">Editar</a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.IdPedido">Detalhes</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdPedido">Apagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

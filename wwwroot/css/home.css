@@ -1,0 +1,41 @@
+﻿body {
+    width: 100%;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.container-grid{
+    margin: 0 20px;
+}
+
+.container-tabela {
+    padding: 0 3px;
+}
+
+.container-tabela:hover {
+   box-shadow: 0px 5px #f77481;
+}
+
+.card {
+    border: none;
+}
+
+h1 {
+    margin-top: 2rem;
+
+    font: bold;
+    color: #f77481;
+}
+
+p {
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 0;
+    color: black;
+}
+
+a:link{
+    text-decoration: none;
+}
